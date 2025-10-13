@@ -53,3 +53,12 @@ graph TD
 
     LLM -- "7. Generates `enhanced_prompt`" --> API
     API -- "8. Returns result to User" --> User
+```
+
+</details>
+
+## Project layout
+
+- **backend/** — FastAPI prototype, exposes `/augment` endpoint
+- **frontend/** — Vite + React static UI prototype
+- **docker-compose.yml** — Compose setup for frontend + backend
