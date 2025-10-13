@@ -59,8 +59,7 @@ This project is built on a hybrid **Fine-tuned AI - RAG Model**.
 * **Fine-tuning:** This provides the *skill*. The base model is trained to understand the *pattern* of transforming a raw prompt into an expert prompt, using the retrieved knowledge as context.
 
 #### System Workflow:
-![System Workflow](<../src/System Workflow.png>)
-
+![System Workflow Diagram](<images/System Workflow.png>)
 1.  **Input:** User provides a `raw_prompt` and a `target_model`.
 2.  **Retrieval (RAG):** The system queries a **Vector Database** using the `target_model` to fetch relevant prompting best practices.
 3.  **Augmentation (Fine-tuned Model):** Our fine-tuned model receives the `raw_prompt` and the retrieved `context`.
