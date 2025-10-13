@@ -9,13 +9,42 @@
 
 ### Day 01
 * **Key Accomplishments:** 
+  - Frontend: scaffolded React app and components; created frontend/src/App.jsx, frontend/src/main.jsx, frontend/index.html; verified Vite dev server.
+  - Backend: implemented FastAPI scaffold and POST /augment stub; added backend/Dockerfile and backend/requirements.txt; defined AugmentRequest/AugmentResponse.
+  - Ingest/RAG: added services/ingest/ingest.py and README; drafted ingest plan and metadata schema; researched Chroma/FAISS/Pinecone trade-offs.
+  - Research & Prompt Engineering: collected official model docs and vendor guides; summarized prompt-engineering fundamentals and example transformations; produced seed guidelines for fine-tuning and RAG content.
+  - Dev tooling: wired docker-compose.yml and added .vscode/tasks.json to run frontend + backend locally.
 * **Goals for Next Day:** 
+  - [ ] Implement a retriever stub in backend to return top KB passages for a given target_model.
+  - [ ] Wire a hosted LLM API call (environment-configurable) into the augment flow for MVP generation.
+  - [ ] Run the ingestion script on initial seed documents and index vectors locally (Chroma/FAISS prototype).
+  - [ ] Enhance frontend: connect model-selection to API, display retrieved context, and add thumbs up/down feedback UI.
+  - [ ] Add basic unit/smoke tests and a short CI/dev README; verify end-to-end with docker-compose.
 
 ### Team Contributions
 * **Jero** :
+  - Implemented frontend scaffold tasks and components.
+  - Created/updated files: frontend/src/App.jsx, frontend/src/main.jsx, frontend/index.html.
+  - Verified dev server build locally with Vite; documented startup steps.
+  - Notes: focused on UX skeleton and model-selection UI placeholder.
+
 * **Kabe** :
+  - Implemented backend scaffold and API stub.
+  - Created/updated files: backend/app/main.py (POST /augment stub), backend/Dockerfile, backend/requirements.txt.
+  - Performed preliminary prompt-engineering study: summarized fundamentals, best practices, and example transformations.
+  - Notes: added API contract (AugmentRequest/AugmentResponse) and basic validation.
+
 * **Bala** :
-* **Junjar** : 
+  - Set up ingestion & RAG placeholders and documentation.
+  - Created/updated files: services/ingest/ingest.py, services/ingest/README.md, docs/templates/arch_diagram.md.
+  - Researched vector DB options (Chroma, FAISS, Pinecone) and documented trade-offs.
+  - Notes: prepared sample ingest plan and metadata schema for KB.
+
+* **Junjar** :
+  - Collected official model & prompting documentation and performed initial research.
+  - Assembled sources: vendor docs, blogs, and academic references; added links to docs/Project Document.md notes.
+  - Notes: produced a short guideline to be used for initial fine-tuning dataset and RAG seed content.
+  - Wired docker-compose.yml to expose backend service and added .vscode task for compose up.
 
 ---
 ### Day 02
