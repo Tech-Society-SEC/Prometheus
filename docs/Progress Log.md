@@ -88,5 +88,5 @@
   - Notes: documented quick-start commands and project conventions.
 ---
 
-Designed UI
+## Designed UI
 ![Initial UI](images/InitialUI.png)
