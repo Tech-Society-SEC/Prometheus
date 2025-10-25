@@ -1,40 +1,59 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import './styles/index.css'
+import PromptBar from './components/PromptBar'
+import Results from './components/Results'
+import { augment } from './api/augment'
 
 export default function App(){
-  const [raw, setRaw] = useState('')
-  const [model, setModel] = useState('gpt-4o')
-  const [result, setResult] = useState([])
+  const [results, setResults] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [theme, setTheme] = useState('dark')
 
-  async function submit(e){
-    e.preventDefault()
-    const res = await fetch('/api/augment', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({raw_prompt: raw, target_model: model})
-    })
-    const data = await res.json()
-    setResult(data.enhanced_prompts || [])
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  function toggleTheme(){
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
+
+  async function handleSubmit({ raw, model }){
+    setLoading(true)
+    setError(null)
+    try{
+      const data = await augment(raw, model)
+      setResults(data.enhanced_prompts || [])
+    }catch(err){
+      setError(err.message || String(err))
+      setResults([])
+    }finally{
+      setLoading(false)
+    }
   }
 
   return (
-    <div style={{maxWidth:800, margin:'2rem auto', fontFamily:'sans-serif'}}>
-      <h1>Prometheus — Prompt Enhancer</h1>
-      <form onSubmit={submit}>
-        <div>
-          <label>Raw Prompt</label>
-          <textarea rows={6} value={raw} onChange={e=>setRaw(e.target.value)} style={{width:'100%'}} />
+    <div className="page-root">
+      <header className="site-header">
+        <div className="header-content">
+          <h1 className="title">Prometheus</h1>
+          <p className="tagline">You provide the prompt, we handle the enhancement</p>
         </div>
-        <div>
-          <label>Target Model</label>
-          <input value={model} onChange={e=>setModel(e.target.value)} />
-        </div>
-        <button type="submit">Enhance</button>
-      </form>
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </header>
 
-      <h2>Results</h2>
-      <ul>
-        {result.map((r,i)=>(<li key={i}><pre>{r}</pre></li>))}
-      </ul>
+      <main className="center-area">
+        <PromptBar onSubmit={handleSubmit} loading={loading} />
+
+        <section className="results-section">
+          {error && <div className="error">{error}</div>}
+          <Results items={results} loading={loading} />
+        </section>
+      </main>
+
+      <footer className="site-footer"></footer>
     </div>
   )
 }
