@@ -53,7 +53,7 @@
 * **Goals for Next Day:** 
   - [ ] Implement a retriever stub in backend to return top KB passages for a given target_model.
   - [x] Wire a hosted LLM API call (environment-configurable) into the augment flow for MVP generation.
-  - [ ] Run the ingestion script on initial seed documents and index vectors locally (Chroma/FAISS prototype).
+  - [x] Run the ingestion script on initial seed documents and index vectors locally (Chroma/FAISS prototype).
   - [x] Enhance frontend: connect model-selection to API, display retrieved context, and add thumbs up/down feedback UI.
   - [ ] Add basic unit/smoke tests and a short CI/dev README; verify end-to-end with docker-compose.
 
@@ -94,7 +94,7 @@
   - [ ] Refine the scraping script to clean raw text and remove HTML artifacts.
   - [ ] Create initial batch (200-300 examples) of fine-tuning dataset in JSONL format.
   - [ ] Implement basic text preprocessing and chunking logic for RAG pipeline.
-  - [ ] Complete the backlogs of Week 1
+  - [x] Complete the backlogs of Week 1
 
 
 ### Team Contributions
