@@ -4,6 +4,42 @@
 
 ---
 
+## 📌 Week 02 (20/10 & 21/10 - 2025)
+
+* **Key Accomplishments:** 
+  - Ingest Pipeline: implemented cleaning, chunking, and JSONL export pipeline in services/ingest/ingest.py with metadata generation.
+  - Validation: created validate_jsonl.py to check dataset quality and required fields.
+  - Datasets: collected and organized prompting guides and examples in docs/Datasets for ChatGPT, Gemini, and Claude.
+  - Development: improved ingest tooling with CLI support for source directories, chunk size, and target model configuration.
+
+* **Goals for Next Week:** 
+  - [ ] Generate 200-300 JSONL examples using the ingest pipeline.
+  - [ ] Manually review and enhance 50 seed prompts.
+  - [ ] Set up basic RAG retrieval prototype.
+  - [ ] Connect backend to vector database (Chroma/FAISS).
+
+### Team Contributions
+* **Jero** :
+  - Implemented text cleaning and normalization functions in ingest.py.
+  - Added HTML artifact removal and whitespace handling.
+  - Notes: used BeautifulSoup for robust HTML parsing with plain-text fallback.
+
+* **Kabe** :
+  - Implemented chunking logic with sentence-boundary preservation.
+  - Added deduplication and filtering for chunk quality control.
+  - Notes: configured max_chars parameter for flexible chunk sizing.
+
+* **Bala** :
+  - Collected and organized dataset files in docs/Datasets.
+  - Gathered prompting guides for ChatGPT, Gemini, and Claude.
+  - Notes: prepared source materials for JSONL generation and annotation.
+
+* **Junjar** : 
+  - Implemented JSONL export with metadata generation (chunk_id, timestamps, target_model).
+  - Created validate_jsonl.py for dataset quality checking.
+  - Notes: added CLI argument parsing and validation reporting with per-model statistics.
+
+---
 
 ## 📌 Week 01 (October 13 & October 14, 2025)
 
@@ -86,7 +122,8 @@
   - Configured Vite dev server with CORS support.
   - Created .github/copilot-instructions.md for AI agent guidance.
   - Notes: documented quick-start commands and project conventions.
----
 
 ## Designed UI
 ![Initial UI](images/InitialUI.png)
+
+---
