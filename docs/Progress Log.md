@@ -4,6 +4,101 @@
 
 ---
 
+## 📌 Week 03 (October 28-29, 2025)
+
+### Day 01 (October 28, 2025)
+* **Key Accomplishments:** 
+  - Created PDF-to-text conversion tool (`services/ingest/convert_pdfs_to_txt.py`) using PyPDF2.
+  - Ran ingest pipeline on ChatGPT dataset: 3 PDFs → 513 validated chunks.
+  - Ran ingest pipeline on Gemini dataset: 1 PDF → 148 validated chunks.
+  - Downloaded 13 Claude documentation pages from docs.anthropic.com as HTML files.
+  - Ran ingest pipeline on Claude dataset: 13 HTML pages → 150 validated chunks.
+  - Merged all three datasets into unified file: `services/ingest/data/all_guidelines.jsonl` (811 total chunks).
+  - Final validation: 100% valid entries across all models (ChatGPT: 513, Gemini: 148, Claude: 150).
+  - **Target exceeded:** 811 chunks vs 200-300 target (270% achievement).
+
+* **Goals for Next Day:** 
+  - [ ] Install ChromaDB and sentence-transformers for vector database.
+  - [ ] Create vector store and embeddings modules in `backend/app/rag/`.
+  - [ ] Test vector store with sample inserts and queries.
+  - [ ] Prepare population script for loading 811 chunks.
+
+### Team Contributions
+* **Jero** :
+  - Implemented PDF-to-text conversion utility using PyPDF2.
+  - Created `services/ingest/convert_pdfs_to_txt.py` with CLI support (--src-dir, --out-dir).
+  - Executed ingest pipeline on Claude HTML documentation (13 pages).
+  - Notes: enabled processing of both PDF and HTML sources with error handling.
+
+* **Kabe** :
+  - Ran ingest pipeline on ChatGPT dataset (3 PDFs → 513 chunks).
+  - Merged all three JSONL files (ChatGPT, Gemini, Claude) into unified dataset.
+  - Ran final validation on merged file: 811/811 valid entries.
+  - Notes: ChatGPT dataset represents 63% of total chunks.
+
+* **Bala** :
+  - Ran ingest pipeline on Gemini dataset (1 PDF → 148 chunks).
+  - Downloaded 13 Claude documentation pages from docs.anthropic.com.
+  - Organized Claude HTML files in `docs/Datasets/Claude/` with numbered filenames.
+  - Notes: covered complete prompt engineering guide (01-overview through 13-extended-thinking).
+
+* **Junjar** : 
+  - Set up backend Python environment and installed dependencies (beautifulsoup4, lxml, PyPDF2).
+  - Configured ingest pipeline CLI parameters and validated JSONL schema.
+  - Updated Timeline.md with completed Day 1-2 tasks and actual results.
+  - Updated Progress Log.md with Week 03 accomplishments.
+  - Notes: prepared infrastructure for multi-model dataset generation and tracked progress.
+
+### Dataset Summary
+| Model | Source Type | Chunks | Status |
+|-------|-------------|--------|--------|
+| ChatGPT | 3 PDFs | 513 | ✅ Complete |
+| Gemini | 1 PDF | 148 | ✅ Complete |
+| Claude | 13 HTML pages | 150 | ✅ Complete |
+| **Total** | **17 sources** | **811** | ✅ **Target exceeded (200-300)** |
+
+---
+
+### Day 02 (October 29, 2025)
+* **Key Accomplishments:** 
+  - Installed ChromaDB and sentence-transformers: `pip install chromadb sentence-transformers`.
+  - Created RAG module structure: `backend/app/rag/__init__.py`.
+  - Implemented `backend/app/rag/vector_store.py` with ChromaDB persistent client.
+  - Implemented `backend/app/rag/embeddings.py` with sentence-transformer model (all-MiniLM-L6-v2).
+  - Tested vector store with sample document inserts and similarity queries.
+
+* **Goals for Next Day:** 
+  - [ ] Create `backend/app/rag/populate_db.py` to load 811 chunks into ChromaDB.
+  - [ ] Run population script and verify collection count.
+  - [ ] Implement retrieval function with model-specific filtering.
+  - [ ] Test retrieval quality with sample queries.
+
+### Team Contributions
+* **Jero** :
+  - Installed ChromaDB and sentence-transformers dependencies.
+  - Created `backend/app/rag/__init__.py` module marker.
+  - Notes: prepared environment for vector database integration.
+
+* **Kabe** :
+  - Implemented `backend/app/rag/vector_store.py` with ChromaDB client initialization.
+  - Created `add_documents()` function for inserting text + embeddings + metadata.
+  - Created `search()` function for query → embedding → top-k similarity results.
+  - Notes: configured persistent storage and collection schema.
+
+* **Bala** :
+  - Implemented `backend/app/rag/embeddings.py` with sentence-transformer model loading.
+  - Created `generate_embedding()` function for single text.
+  - Created `batch_generate_embeddings()` function for efficiency.
+  - Notes: used all-MiniLM-L6-v2 model for 384-dimensional embeddings.
+
+* **Junjar** : 
+  - Tested vector store with sample inserts and queries.
+  - Verified embedding generation and similarity search functionality.
+  - Documented vector store API and usage examples.
+  - Notes: confirmed ChromaDB setup working correctly before population.
+
+---
+
 ## 📌 Week 02 (20/10 & 21/10 - 2025)
 
 * **Key Accomplishments:** 

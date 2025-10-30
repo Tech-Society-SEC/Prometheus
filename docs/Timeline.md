@@ -47,17 +47,21 @@
 #### **Week 3: Building the RAG Knowledge Base**
 * **Primary Focus:** Vector Database Setup & Retrieval System
 * **Day 1-2: Dataset Generation (200-300 examples)**
-    * [ ] Run ingest pipeline on collected HTML/TXT sources:
+    * ✅ Run ingest pipeline on collected HTML/TXT sources:
         ```bash
         python services/ingest/ingest.py \
           --source-dir docs/Datasets/ChatGPT \
           --out services/ingest/data/chatgpt_guidelines.jsonl \
           --target-model ChatGPT
         ```
-    * [ ] Repeat for Gemini and Claude datasets
-    * [ ] Validate all outputs with `validate_jsonl.py`
-    * [ ] Merge validated JSONL files into single dataset
-    * [ ] Target: 200-300 quality chunks for RAG indexing
+    * ✅ Repeat for Gemini and Claude datasets
+    * ✅ Validate all outputs with `validate_jsonl.py`
+    * ✅ Merge validated JSONL files into single dataset
+    * ✅ Target: 200-300 quality chunks → **Achieved: 811 chunks!**
+        - ChatGPT: 513 chunks
+        - Gemini: 148 chunks
+        - Claude: 150 chunks
+        - Merged file: `services/ingest/data/all_guidelines.jsonl`
 
 * **Day 3-4: Vector Database Setup**
     * [ ] Install ChromaDB: `pip install chromadb sentence-transformers`
